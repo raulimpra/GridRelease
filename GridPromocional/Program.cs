@@ -37,9 +37,6 @@ builder.Services.AddScoped<ClaimsTransformer, ClaimsTransformer>();
 builder.Services.AddScoped<IClaimsTransformation, ClaimsTransformer>();
 builder.Services.AddTransient(typeof(ICsvService<,>), typeof(CsvService<,>));
 builder.Services.AddTransient(typeof(IUploadService<,>), typeof(UploadService<,>));
-builder.Services.AddScoped<IUserFamilyService, UserFamilyService>();
-builder.Services.AddScoped<IProductsServices, ProductsServices>();
-builder.Services.AddScoped<ICatalogServices, CatalogServices>();
 builder.Services.AddScoped<ILogServices, LogServices>();
 builder.Services.AddScoped<AuthorizeActionFilter>();
 

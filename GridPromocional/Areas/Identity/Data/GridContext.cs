@@ -44,9 +44,6 @@ public class GridContext : IdentityDbContext<GridUser>
     public virtual DbSet<UserRecord> UserRecord { get; set; }
     public virtual DbSet<UserFamiliesReportRecord> UserFamiliesReportRecord { get; set; }
     public virtual DbSet<PgSKUMaster> PgSKUMaster { get; set; }
-    public virtual DbSet<ViewInventories> ViewInventories { get; set; } = null!;
-    public virtual DbSet<SKUMasterView> SKUMasterView { get; set; } = null!;
-
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -380,11 +377,6 @@ public class GridContext : IdentityDbContext<GridUser>
         builder.Entity<PgSKUMaster>(entity =>
         {
             entity.HasKey(e => e.Code);
-        });
-
-        builder.Entity<SKUMasterView>(entity =>
-        {
-            entity.HasNoKey();
         });
     }
 }
