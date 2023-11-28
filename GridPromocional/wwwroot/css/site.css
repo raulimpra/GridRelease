@@ -1,0 +1,312 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+@media only screen and (min-width: 768px) {
+    .main-message {
+        position: fixed;
+        right: 6%;
+        top: 120px;
+        max-width: 45%;
+        z-index: 10;
+    }
+}
+
+#table-wrapper {
+    position: relative;
+    border-radius: 0px;
+}
+    #table-wrapper table {
+        white-space: nowrap;
+    }
+
+.active {
+    color: #f36633 !important;
+    /* font-family: "Sans Serif"; */
+}
+
+#table-scroll {
+    overflow-x: auto;
+    border-radius: 1rem;
+    border: thin solid #DBDBDB;
+}
+
+@font-face {
+    font-family: "GSK";
+    src: url("/fonts/GSK-Light.woff");
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "GSK";
+    src: url("/fonts/GSK-Regular.woff");
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "GSK";
+    src: url("/fonts/GSK-Bold.woff");
+    font-style: normal;
+    font-weight: 700;
+}
+
+:root {
+    --bs-body-font-family: "GSK","sans-serif";
+    --bs-body-color: #000000;
+    /*--bs-danger-rgb: 251, 187, 38;*/
+}
+
+.navbar {
+    /*height: 106px;*/
+}
+
+.menu > li{
+    /*poaition: relative;*/
+    display: inline-block;
+    border-left: thin solid #6A6A6A;
+    border-right: medium none #7E7E7E;
+    border-top-width: thin;
+
+    min-width: 10rem;
+}
+
+.menu > li > a{
+    display: block;
+    padding: 10px 20px !important;
+    color: black;
+    font-family: "GSK","sans-serif";
+    text-decoration: none;
+    font-size: 16px;
+    font-style: normal;
+    text-align: center;
+}
+.menu li a:hover{
+    color: orange;
+    transition: all .3s;
+    font-size: 16px;
+    /* font-family: "Sans Serif"; */
+}
+/*submenu*/
+.submenu{
+    position: absolute;
+    background-color: #FFFFFF;
+    min-width: 100%;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 1.5s;
+    text-decoration: none;
+    border: 0;
+    margin-top: 0 !important;
+}
+.submenu li a{
+    display: block;
+    padding:15px;
+    color:black;
+    font-family: "GSK","sans-serif";
+    text-decoration: none;
+
+    text-align: right;
+}
+.menu li .submenu{
+    border: thin solid #FF6633;
+}
+.menu li:hover .submenu{
+    visibility: visible;
+    opacity: 1;
+}
+
+.alert-success {
+    color: #000000;
+    background-color: #FFA500;
+    border-color: #EC4D00;
+}
+
+.alert-danger {
+    color: #FFFFFF;
+    background-color: #ED4312;
+    border-color: #f5c2c7
+}
+
+.bg-danger {
+    --bs-bg-opacity: 1;
+    background-color: #FBBB26 !important;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.btn-primary {
+    background-color: #f36633 !important;
+    border-color: #f36633 !important;
+    color: #fff
+}
+    .btn-primary:hover {
+        background-color: #f25218 !important;
+    }
+    .btn-check:focus + .btn-primary, .btn-primary:focus {
+        box-shadow: 0 0 0 .25rem rgba(243, 102, 51, .5);
+    }
+
+.dropdown-item.active, .dropdown-item:active {
+    text-decoration: none;
+    background-color: transparent !important;
+}
+
+.upload-history tr td:nth-child(3) {
+    text-align: center;
+}
+.upload-history tr {
+    white-space: nowrap;
+}
+.upload-history tr td:nth-child(4),
+.upload-history tr td:nth-child(5),
+.upload-history tr td:nth-child(6),
+.upload-history tr td:nth-child(7) {
+    text-align: right;
+}
+
+.upload-error {
+    font-size: .875em;
+}
+.upload-error tr {
+    white-space: nowrap;
+}
+.upload-error tr td:nth-child(3) {
+    text-align: center;
+}
+.upload-error tr td:nth-child(4) {
+    text-align: right;
+}
+.upload-error tr td {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 300px;
+    overflow: hidden;
+}
+.upload-error tr td:nth-child(6) {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 650px;
+    overflow: hidden;
+}
+
+/* bootstrap INI */
+a:not([href]):not([class]),
+a:not([href]):not([class]):hover {
+    /* font-family: sans-serif; */
+}
+
+.table>:not(:last-child)>:last-child>* {
+    border-top: thin solid #000000 !important;
+    border-bottom: thin solid currentColor !important;
+    border-right-width: thin !important;
+    border-left-width: thin !important;
+    border-right-style: solid !important;
+    border-left-style: solid !important;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    border: thin solid #CDCDCD !important;
+}
+
+.dropdown-toggle {
+    border-width: thin !important;
+}
+
+.nav-link {
+    border-bottom: thin solid transparent;
+}
+.nav-link:focus,
+.nav-link:hover {
+    border-bottom: thin solid #FF6633;
+    /* font-family: "Sans Serif"; */
+}
+
+.nav-tabs {
+    text-shadow: 0px 0px !important;
+}
+
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #ff6633 !important;
+    /* font-family: sans-serif; */
+    font-weight: var(--bs-body-font-weight);
+    font-size: 16px;
+}
+
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .show>.nav-link {
+    color: #ff6633;
+    border-bottom: thin solid #FF6633;
+    /* font-family: Arial; */
+}
+
+.card {
+    border-radius: 1rem !important;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+}
+
+.card-header {
+    border: thin solid #DFDFDF !important;
+    border-top-right-radius: 10px !important;
+    border-top-left-radius: 10px !important;
+}
+
+.card-header:first-child {
+    border-radius: 0rem !important;
+}
+
+/* bootstrap FIN */
+
+.container_a {
+    height: 400px;
+    margin: 100px auto;
+    max-width: 1000px;
+}
+.boxtext_1 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: xx-large;
+    line-height: 38px;
+}
+.index_image {
+    background-image: url(../img/RondaPortada.gif);
+    background-repeat: no-repeat;
+    background-size: 385px 400px;
+    background-position: right;
+}
+
+.dt-button {
+	background: #6c757d !important;
+	border-color: #6c757d;
+	border-radius: .25rem !important;
+	border: 1px solid transparent !important;
+	color: #fff !important;
+	font-size: 1rem !important;
+	font-weight: 400;
+	line-height: 1.5 !important;
+	padding: .375rem .75rem !important;
+	text-align: center;
+	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	transition: none;
+	vertical-align: middle;
+	margin-top: 1em;
+	filter: none !important;
+}

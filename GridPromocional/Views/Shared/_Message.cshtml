@@ -1,0 +1,18 @@
+﻿@model MessageViewModel
+
+@{
+    var alertDisplay = string.IsNullOrWhiteSpace(Model?.Message) ? "d-none" : string.Empty;
+
+    var alertPrefix = Model?.IsError == true ? "Error:" : string.Empty;
+    var alertColor = Model?.IsError == true ? "alert-danger" : "alert-success";
+
+    var alertMessage = Model?.Message?.Replace("{", "{{").Replace("}", "}}") ?? string.Empty;
+    var alertDetail = Model?.Detail?.Replace("{", "{{").Replace("}", "}}") ?? string.Empty;
+}
+
+<div class="alert alert-dismissible shadow fade show @alertColor @alertDisplay" role="alert">
+    <strong>@alertPrefix</strong>
+    <span>@alertMessage</span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    <input type="hidden" value="@alertDetail" />
+</div>

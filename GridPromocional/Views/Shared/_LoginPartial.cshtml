@@ -1,0 +1,26 @@
+﻿@using System.Security.Principal
+@using GridPromocional.Models.Views;
+@{
+    var userClaims = (UserClaims?)Context.Items["User"];
+}
+
+<ul class="navbar-nav menu">
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLogin" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">@userClaims?.codemp</a>
+            <ul class="dropdown-menu submenu" aria-labelledby="navbarDropdownLogin">
+                <li>
+                    <a class="dropdown-item" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignOut">Cerrar sesión</a>
+                </li>
+            </ul>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">Iniciar sesión</a>
+        </li>
+    }
+</ul>

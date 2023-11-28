@@ -1,0 +1,135 @@
+﻿@using GridPromocional.Models.Views;
+@{
+    var userClaims = (UserClaims?)Context.Items["User"];
+    var curAction = (string?)ViewData["View"] ?? (string?)ViewContext.RouteData.Values["Action"];
+    var curController = (string?)ViewContext.RouteData.Values["Controller"];
+    var actions = userClaims?.actions?.Where(x => x.IsMenu);
+    var curMenu = actions?.FirstOrDefault(x => x.Controller == curController && x.Action == curAction);
+    if (actions?.Any() != true && curController != null && curController != "Account" && curController != "Home")
+        Context.Response.Redirect("/MicrosoftIdentity/Account/AccessDenied");
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - GridPromocional</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/PagedList.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/GridPromocional.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/DataTables/DataTables-1.13.6/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="~/lib/DataTables/Select-1.7.0/css/select.dataTables.min.css" />
+    <link rel="stylesheet" href="~/lib/DataTables/datatables.min.css" />
+        
+    <link rel="icon" type="image/png" href="/img/favicons/favicon-96x96.png" sizes="96x96" asp-append-version="true" />
+    <link rel="icon" type="image/png" href="/img/favicons/favicon-128.png" sizes="128x128" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-xl navbar-toggleable-xl navbar-light bg-white border-bottom box-shadow">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/img/gif_logo_opt.gif" alt="GridPromocional" width="116.5" height="35">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-xl-inline-flex justify-content-between">
+                    <ul class="navbar-nav ms-auto menu">
+
+                        @if (actions != null)
+                        {
+                            int menuNum = 0;
+                            var menus = actions.GroupBy(x => x.Level1);
+                            foreach (var menu in menus)
+                            {
+                                var submenus = menu.GroupBy(x => x.Level2).Select(l3 => l3.First());
+                                var activeL1 = menu.Key == curMenu?.Level1 ? "active" : null;
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle @activeL1" href="#" id="navbarDropdown@(++menuNum)"
+                                        role="button" data-bs-toggle="dropdown" aria-expanded="false">@menu.Key</a>
+                                    <ul class="dropdown-menu submenu" aria-labelledby="navbarDropdown@(menuNum)">
+                                        @foreach (var sub in submenus)
+                                        {
+                                            var activeL2 = sub.Level2 == curMenu?.Level2 ? activeL1 : null;
+                                            var disabled = sub.Action == null ? "disabled" : null;
+
+                                            <li>
+                                                <a class="dropdown-item @activeL2 @disabled" asp-controller="@sub.Controller"
+                                                   asp-action="@sub.Action">@sub.Level2</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                        }
+
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+
+        @if (actions != null)
+        {
+            <nav class="nav navbar-expand-sm justify-content-center navbar-light bg-white border-bottom box-shadow nav-fill shadow mb-3 fs-6">
+                <div class="container-fluid">
+                    <ul class="navbar-nav flex-grow-1">
+                        @{
+                            var options = actions.Where(x => x.Level1 == curMenu?.Level1 && x.Level2 == curMenu?.Level2);
+                        }
+                        @foreach (var o in options)
+                        {
+                            var activeL3 = o.Level3 == curMenu?.Level3 ? "active" : null;
+                            var disabled = o.Action == null ? "disabled" : null;
+
+                            <li class="nav-item">
+                                <a id = "@(o.Controller)-@(o.Action)" class="nav-link link-secondary @activeL3 @disabled"
+                                    asp-controller="@o.Controller" asp-action="@o.Action">@o.Level3</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </nav>
+        }
+
+    </header>
+
+    <div class="main-message">
+        @{ var messages = (List<MessageViewModel>?)ViewData["Messages"]; }
+        @if (messages != null)
+        {
+            foreach (var item in messages)
+            { 
+                <partial name="_Message" model="item" />
+            }
+        }
+    </div>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - GridPromocional v0.2
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validate/localization/messages_es.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/DataTables/datatables.min.js"></script>
+    <script src="~/lib/DataTables/pdfmake-0.2.7/pdfmake.min.js"></script>
+    <script src="~/lib/DataTables/pdfmake-0.2.7/vfs_fonts.js"></script>
+    <script src="~/lib/DataTables/Select-1.7.0/js/dataTables.select.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

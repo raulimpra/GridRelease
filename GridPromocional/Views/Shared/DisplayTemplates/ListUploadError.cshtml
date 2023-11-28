@@ -1,0 +1,60 @@
+﻿@model IEnumerable<UploadError>
+
+@using System.Reflection;
+@using System.ComponentModel.DataAnnotations.Schema;
+@using CsvHelper.Configuration.Attributes;
+
+@if (Model.Any())
+{
+    int defaultOrder = 1000;
+    var properties = Model.First().GetType().GetProperties()
+        .Where(p => !Attribute.IsDefined(p, typeof(IgnoreAttribute)))
+        .OrderBy(p => p.GetCustomAttribute<IndexAttribute>()?.Index ?? defaultOrder++);
+
+    <div class="card my-3">
+
+        <div class="card-header bg-danger">
+            <div class="row align-items-center">
+                <div class="col-8">Errores de la última carga</div>
+                <div class="col-4">
+                    @Html.ActionLink("Descargar", "DownloadErrors", null, null, new { @class = "btn btn-light float-end" })
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+
+            <div id="table-wrapper">
+                <div id="table-scroll">
+
+                    <table class="table table-striped upload-error" id="TableErrorList">
+                        <thead>
+                            <tr>
+                                @foreach(var property in properties)
+                                {
+                                    var name = property.GetCustomAttribute<NameAttribute>()?.Names[0] ?? property.Name;
+                                        <th scope="col">@name</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var error in Model)
+                            {
+                                <tr>
+                                    @foreach (var property2 in properties)
+                                    {
+                                        var valor = property2.GetValue(error)?.ToString();
+                                        <td>@valor</td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+}

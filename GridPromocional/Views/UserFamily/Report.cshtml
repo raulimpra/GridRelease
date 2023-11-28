@@ -1,0 +1,65 @@
+﻿@page
+<div class="row" style="padding-top:10px">
+    <div class="col-md-4">
+        <label class="control-label">Perfiles:</label>
+        <select class="form-control" id="ddlPerfiles">
+            <option value="">-- Seleccione un Perfil --</option>
+            @{
+                var roles = ViewBag.Roles;
+                if (roles != null)
+                {
+                    foreach (var rol in roles.Items)
+                    {
+                        <option value="@rol.Id">@rol.Name</option>
+                    }
+                }
+            }
+        </select>
+    </div>
+</div>
+<div class="row" style="padding-top:10px">
+    <div class="col-md-4">
+        <label class="control-label">Familias:</label>
+        <select class="form-control" id="ddlFamilias">
+            <option value="">-- Seleccione una Familia --</option>
+            @{
+                var familias = ViewBag.Families;
+                if (familias != null)
+                {
+                    foreach (var familia in familias.Items)
+                    {
+                        <option value="@familia.IdFam">@familia.Family</option>
+                    }
+                }
+            }
+        </select>
+    </div>
+    <div class="col-md-4">
+        <br />
+        <input class="btn btn-primary" type="submit" value="Filtrar por Familia y/o Perfil" onclick="FilterData()">
+    </div>
+</div>
+<br />
+<br />
+<table id="TableReport" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th></th>
+            <th>CDGEMP</th>
+            <th>COLEMP</th>
+            <th>NMBEMP</th>
+            <th>Perfil</th>
+            <th>Familia</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+@section Scripts{
+    <script type="text/javascript" src="~/js/JsViews/UserFamily.js" asp-append-version="true"></script>
+    <script>
+        Report();
+    </script>
+}
+
+
