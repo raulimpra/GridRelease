@@ -1,3 +1,6 @@
+using DocumentFormat.OpenXml.Presentation;
+using GridPromocional.Data;
+using GridPromocional.Extensions;
 using GridPromocional.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,14 +12,24 @@ namespace GridPromocional.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly GridContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, GridContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
+            try
+            {
+                var x = _context.Users.Where(x => x.NormalizedUserName == User.Identity.Name.ToUpper()).ToList();
+            }
+            catch (Exception ex)
+            {
+                ViewData.PutListItem("Messages", new MessageViewModel("Error de conexion", true, ex.ToString()));
+            }
             return View();
         }
 
