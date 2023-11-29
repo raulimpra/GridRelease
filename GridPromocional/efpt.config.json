@@ -16,15 +16,107 @@
    "T4TemplatePath": null,
    "Tables": [
       {
-         "Name": "[dbo].[_CAT_TEST]",
+         "Name": "[dbo].[PG_cat_family]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[_FACT_TEST]",
+         "Name": "[dbo].[PG_cat_managers_others]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[SALES_FORCE_STRUCTURE]",
+         "Name": "[dbo].[PG_cat_material_category]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_cat_material_type]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_cat_menu_actions]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_cat_products]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_cat_products_additions]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_cat_sales_force]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_cat_status_do]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_cat_status_employee]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_cat_status_products]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_fact_distribution_orders]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_fact_inventories]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_fact_purchase_order]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_log_activity]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_log_upload_history]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_role_actions]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_sel_family]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_sel_sales_force]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_stg_cat_managers_others]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_stg_cat_products]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_stg_cat_products_additions]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_stg_cat_sales_force]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_stg_fact_inventories]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_stg_fact_purchase_order]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PG_user_family]",
          "ObjectType": 0
       }
    ],
@@ -41,6 +133,7 @@
    "UseLegacyPluralizer": false,
    "UseManyToManyEntity": false,
    "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
    "UseNoObjectFilter": false,
    "UseNodaTime": false,
    "UseNullableReferences": false,
